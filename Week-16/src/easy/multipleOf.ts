@@ -4,3 +4,11 @@
 // Example Input: num = 15, divisor = 5
 // Example Output: true
 
+export function isMultipleOf(num: number, div: number): boolean {
+    if(num == 0) return true;
+    if(num % div == 0) {
+        return true;
+    }else {
+        return false
+    }
+}
