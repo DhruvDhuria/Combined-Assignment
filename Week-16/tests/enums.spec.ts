@@ -15,6 +15,6 @@ describe("getSeatDescription Function", () => {
 
   it("should throw an error for an invalid seat position", () => {
     // Casting to bypass TypeScript's strict enum checks for testing invalid input
-    expect(() => getSeatDescription("INVALID" as SeatPosition)).toThrow("Invalid seat position");
+    expect(() => getSeatDescription("INVALID"as unknown as SeatPosition)).toThrow("Invalid seat position");
   });
 });

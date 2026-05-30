@@ -3,6 +3,7 @@
 
 // name (a string)
 // price (a number)
+
 // Create another type for DigitalProduct with the following properties:
 
 // downloadLink (a string)
@@ -25,4 +26,21 @@
 // }
 
 
+type Product = {
+    name: string;
+    price: number
+}
 
+type DigitalProduct = {
+    downloadLink: string;
+}
+
+export type FullProduct = Product & DigitalProduct
+
+export const fullProduct: FullProduct = {
+    name: "E-book",
+    price: 10,
+    downloadLink: "https://example.com/ebook"
+}
+
+console.log(fullProduct);

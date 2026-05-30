@@ -6,3 +6,12 @@
 // Example Output:
 // true
 
+interface User {
+    name: string;
+    age: number;
+}
+
+export function isEligibleForDriving(user: User): boolean {
+    if(user.age >= 16) return true
+    return false
+}

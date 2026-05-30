@@ -17,4 +17,14 @@
 
 // 78.53981633974483
 
+type Circle = {
+    radius: number;
+    
+}
+type Rectangle = {
+    width: number;
+    height: number
+} 
+
+type Shape = Circle | Rectangle;
 

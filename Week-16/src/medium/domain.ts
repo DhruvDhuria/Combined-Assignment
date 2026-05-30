@@ -14,3 +14,14 @@
 // Example Output:
 // true
 
+export interface User {
+    firstName: string;
+    lastName: string;
+    email: string;
+    age: number;
+}
+
+export function isAllowedDomain(user: User, domain: string): boolean {
+    if(user.email.includes(domain)) return true
+    else return false
+}
