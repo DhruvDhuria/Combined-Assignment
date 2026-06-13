@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.17.0/dist/axios.min.js"></script>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; padding: 0px 100px;">
+        <div id="notes">Loading...</div>
+        <div style="display: flex; align-items: center;">
+            <textarea name="userNote" id="userNote" placeholder="write a note here"></textarea>
+            <button onclick="addNote()">Create new note</button>
+        </div>
+    </div>
+    <script>
+
+        async function addNote() {
+
+            const userNote = document.getElementById('userNote')
+            const response = await axios.post("http://localhost:3000/notes", {
+                note: userNote.value
+            }, {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            })
+
+            console.log(response.data);
+
+            const noteNode = document.createElement('div')
+            noteNode.innerHTML = userNote.value
+            noteNode.setAttribute("style", "border: 2px solid black; padding: 4px 10px")
+            notes.appendChild(noteNode)
+            userNote.value = "";
+
+        }
+        async function getnotes() {
+            // const response = await fetch("http://localhost:3000/notes")
+            // const json = await response.json()
+            // console.log(json.notes)
+
+            // axios way 
+            const response = await axios.get("http://localhost:3000/notes", {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            })
+            const data = response.data.notes
+
+            const notes = document.getElementById('notes')
+            notes.innerHTML = "";
+            for (let i = 0; i < data.length; i++) { 
+                const noteNode = document.createElement('div')
+                noteNode.innerHTML = data[i].note
+                noteNode.setAttribute("style", "border: 2px solid black; padding: 4px 10px")
+                notes.appendChild(noteNode)
+                
+            }
+        }
+        getnotes()
+    </script>
+</body>
+</html>
